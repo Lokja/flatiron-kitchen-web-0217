@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe "creating recipes" do
   context "on the new recipe page" do
@@ -46,14 +47,14 @@ describe "creating recipes" do
     #       (i.e. clicking on the <label> checks/unchecks the box).
     it "should create a recipe with one ingredient" do
       Ingredient.create(name: 'Spam')
-
+      #binding.pry
       visit new_recipe_path
 
       fill_in 'recipe_name', with: 'Spam Cakes'
 
       check('Spam')
       click_button('Create Recipe')
-
+      #binding.pry
       expect(Recipe.first.ingredients.where(name: 'Spam').count).to eq(1)
     end
 

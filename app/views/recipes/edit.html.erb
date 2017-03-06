@@ -1,0 +1,11 @@
+<h1>Edit a Recipe:</h1>
+
+<%= form_for @recipe do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <% @ingredients.each do |ingredient| %>
+    <%= label_tag "ingredient_#{ingredient.id}", ingredient.name %>
+    <%= check_box_tag "recipe[ingredient_ids][]", ingredient.id, {checked: @recipe.ingredients.any?{|ing| ing.name == ingredient.name}}, id: "ingredient_#{ingredient.id}" %>
+  <% end %>
+  <%= f.submit 'Update Recipe'%>
+<% end %>
